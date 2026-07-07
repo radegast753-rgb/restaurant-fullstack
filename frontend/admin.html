@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/admin.css">
+    <title>Menu Admin Panel</title>
+</head>
+<body>
+
+    <div id="login-block" class="box">
+        <h2>Admin Panel Login</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">For HR: default password is <b>admin123</b></p>
+        <div class="password-wrapper">
+            <input type="password" id="pass-input" placeholder="Enter password">
+            <button type="button" id="toggle-password" tabindex="-1">&#128065;</button>
+        </div>
+        <button type="button" id="login-btn" style="margin-top: 10px;">
+        <p id="error-msg" style="color: #ff4444; font-size: 14px; margin-top: 10px;"></p>
+    </div>
+
+    <div id="admin-panel" class="box hidden">
+        <h2>Menu Management</h2>
+        
+        <form id="dish-form">
+            <label>Category *</label>
+            <select id="category">
+                <option value="drinks">Drinks</option>
+                <option value="main">Main Course</option>
+                <option value="starters">Starters & Sides</option>
+            </select>
+
+            <label>Dish Title</label>
+            <input type="text" id="dish-title" placeholder="your name" required>
+            
+            <label>Price *</label>
+            <input type="text" id="dish-price" placeholder="your price" required>
+            
+            <label>Description</label>
+            <textarea id="dish-desc" placeholder="your data" rows="3"></textarea>
+            
+            <button type="submit">Add to Menu</button>
+        </form>
+        
+        <button type="button" onclick="resetToDemo()" class="btn-secondary">
+        <button type="button" onclick="clearMenu()" class="btn-danger">
+        
+        <h3>Current Menu Preview</h3>
+        <div id="preview-list"></div>
+    </div>
+
+    <script>
+window.addEventListener("beforeunload", () => {
+    console.log("PAGE UNLOAD");
+});
+</script>
+    <script src="js/admin.js"></script>
+
+</body>
+</html>
