@@ -2,7 +2,7 @@ window.addEventListener("beforeunload", () => {
     console.log("PAGE RELOAD");
 });
 
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = "https://pizza-fullstack-api.onrender.com/api";
 
 const passwordInput = document.getElementById("pass-input");
 const togglePassword = document.getElementById("toggle-password");
