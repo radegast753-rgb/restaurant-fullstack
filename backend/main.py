@@ -11,12 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import Base, engine
 import models
 
-# Создаем таблицы в базе данных
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Restaurant API")
 
-# Разрешаем запросы с фронтенда
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
