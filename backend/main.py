@@ -1,25 +1,25 @@
-from fastapi import Depends
+from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from database import get_db
+from database import get_db, Base, engine
 from models import PizzaItem
 from schemas import MenuItem, MenuItemCreate
 
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-from database import Base, engine
 import models
+
 
 Base.metadata.create_all(bind=engine)
 
+
 app = FastAPI(title="Restaurant API")
+
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5500",
-        "http://localhost:5500",
+        "https://restaurant-fullstack-eight.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -30,6 +30,7 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {"message": "Restaurant API is running"}
+
 
 @app.get("/api/menu", response_model=list[MenuItem])
 def get_menu(db: Session = Depends(get_db)):
@@ -54,6 +55,7 @@ def create_menu_item(
     db.refresh(new_item)
 
     return new_item
+
 
 @app.delete("/api/menu/{item_id}")
 def delete_menu_item(
